@@ -196,6 +196,19 @@ class NotionConnection:
         if r.status_code != 200:
             print("Error:", r.status_code, r.text)
 
+    def update_page_property(self, page_id, property_name, value):
+        url = f"https://api.notion.com/v1/pages/{page_id}"
+        data = {
+            "properties": {
+                property_name: {
+                    "checkbox": value
+                }
+            }
+        }
+        r = requests.patch(url, json=data, headers=self.headers)
+        if r.status_code != 200:
+            print("Error updating property:", r.status_code, r.text)
+
 
 def upload_to_notion(transcript_file, creation_date):
     title = os.path.splitext(os.path.splitext(transcript_file)[0])[0]
@@ -210,6 +223,7 @@ def upload_to_notion(transcript_file, creation_date):
         for i in range(0, len(notion_blocks), 99):
             subarray = notion_blocks[i:i+99]
             notion_database.add_blocks_to_page(new_entry_id, subarray)
+        notion_database.update_page_property(new_entry_id, "FullyUploaded", True)
 
 
 # 7. Cleanup generated files
