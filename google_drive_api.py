@@ -117,9 +117,13 @@ def parse_json_to_markdown(json_file):
     transcript_md = ext_less + ".transcript.md"
     with open(transcript_md, "a") as output_file:
         for segment in segments:
-            speaker = segment["speaker"]
-            text = segment["text"]
-            output_file.write(f"[{speaker.strip()}] {text.strip()}\n")
+            if "speaker" in segment:
+                speaker = segment["speaker"]
+            else:
+                speaker = "Unkown_Speaker"
+            if "text" in segment:
+                text = segment["text"]
+                output_file.write(f"[{speaker.strip()}] {text.strip()}\n")
     return transcript_md
 
 
