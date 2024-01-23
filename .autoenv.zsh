@@ -1,1 +1,1 @@
-mamba activate whisperx
+m activate whisperxjan24
