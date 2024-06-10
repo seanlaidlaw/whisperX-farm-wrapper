@@ -3,7 +3,5 @@
 	"GDRIVE_FOLDER_ID": "",
 	"GDRIVE_OUTPUT_FOLDER_ID": "",
 	"DOWNLOAD_PATH": "input_audio",
-	"NOTION_TOKEN": "secret_apikey",
-	"DATABASE_ID": "database_id",
 	"HF_TOKEN": "hf_huggingfacetoken"
 }

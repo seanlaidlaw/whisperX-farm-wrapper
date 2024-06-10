@@ -7,7 +7,6 @@ import subprocess
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
 from oauth2client.service_account import ServiceAccountCredentials
-import requests
 
 # Load settings from the settings.json file
 with open("gdrive_whisper_settings.json", "r") as f:
@@ -17,8 +16,6 @@ GDRIVE_API_DIR = settings["GDRIVE_API_DIR"]
 GDRIVE_FOLDER_ID = settings["GDRIVE_FOLDER_ID"]
 GDRIVE_OUTPUT_FOLDER_ID = settings["GDRIVE_OUTPUT_FOLDER_ID"]
 DOWNLOAD_PATH = settings["DOWNLOAD_PATH"]
-NOTION_TOKEN = settings["NOTION_TOKEN"]
-DATABASE_ID = settings["DATABASE_ID"]
 HF_TOKEN = settings["HF_TOKEN"]
 
 
@@ -98,7 +95,7 @@ def transcribe_audio(input_path):
     bsub_command = [
         "bsub",
         "-q",
-        "gpu-huge",
+        "gpu-normal",
         "-Is",
         "-n",
         "1",
